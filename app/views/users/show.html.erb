@@ -1,0 +1,36 @@
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <h2><%= @user.name %></h2>
+      <% if @user.id == @current_user.id %>
+        <%= link_to("ユーザー情報の編集", "/users/#{@user.id}/edit") %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="wide-container">
+    <% @posts.each do |post| %>
+      <% if post.user_id == @user.id %>
+        <div class="posts-index-item">
+          <% if post.share == 1 then %>
+            <% if post.user_id == @current_user.id %>
+              <div class="post-left">
+                <div class="post-content">
+                  <%= link_to(post.content, "/posts/#{post.id}") %>            
+                </div>
+              </div> 
+            <% end %>
+          <% else %>
+            <div class="post-right">
+              <div class="post-content">
+                <%= link_to(post.content, "/posts/#{post.id}") %>            
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
